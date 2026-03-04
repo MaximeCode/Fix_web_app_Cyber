@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xzen/chat-bot-io-v2.git"
+    "url": "git+https://github.com/MaximeCode/Fix_web_app_Cyber.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xzen/chat-bot-io-v2/issues"
+    "url": "https://github.com/MaximeCode/Fix_web_app_Cyber/issues"
   },
-  "homepage": "https://github.com/xzen/chat-bot-io-v2#readme",
+  "homepage": "https://github.com/MaximeCode/Fix_web_app_Cyber#readme",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/eslint-parser": "^7.5.4",
