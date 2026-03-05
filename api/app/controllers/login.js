@@ -50,9 +50,9 @@ const Login = class Login {
             .json({ code: 400, message: "Login and password required" });
         }
         const user = await this.UserModel.findOne({ name: login });
-        console.log("User found:", user);
+        // console.log("User found:", user);
         if (!user || !(await user.comparePassword(password))) {
-          console.log("Invalid credentials for user:", login);
+          // console.log("Invalid credentials for user:", login);
           return res
             .status(401)
             .json({ code: 401, message: "Invalid credentials" });
@@ -62,14 +62,14 @@ const Login = class Login {
           this.config.jwtSecret,
           { expiresIn: "1h" },
         );
-        console.log("Token generated for user:", user.name);
+        // console.log("Token generated for user:", user.name);
         res.cookie("token", token, {
           httpOnly: true,
           secure: false,
           maxAge: 3600000,
         }); // secure: true in prod
         res.status(200).json({ code: 200, message: "Login successful", token });
-        console.log("Login successful, token issued", user.name);
+        // console.log("Login successful, token issued", user.name);
       } catch (err) {
         console.error(`[ERROR] POST /login/ -> ${err}`);
         res.status(500).json({

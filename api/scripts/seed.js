@@ -6,7 +6,6 @@ async function seedUsers() {
         const config = require('../app/config.js').development; // or process.argv[2]
         const host = config.mongodb;
         const connect = mongoose.createConnection(host);
-        console.log(connect);
 
         const User = connect.model('User', UserModel);
 

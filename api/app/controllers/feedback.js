@@ -21,7 +21,7 @@ const Feedback = class Feedback {
    */
   create() {
     this.app.post('/feedback/', (req, res) => {
-      console.log(req.body);
+      // console.log(req.body);
       try {
         const schema = Joi.object({
           name: Joi.string().required(),

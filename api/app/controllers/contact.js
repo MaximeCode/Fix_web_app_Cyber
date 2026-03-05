@@ -78,7 +78,7 @@ const Contact = class Contact {
   delete() {
     this.app.delete('/contact/:id', authMiddleware(this.config), (req, res) => {
       try {
-        console.log(req.params);
+        // console.log(req.params);
         this.ContactModel.findByIdAndDelete(req.params.id).then((contact) => {
           res.status(200).json(contact || {})
         }).catch(() => {
