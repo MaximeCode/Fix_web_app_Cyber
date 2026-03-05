@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npx webpack-dev-server --mode development",
     "api-start": "node ./api/index.js",
+    "seed": "node ./api/scripts/seed.js",
     "dist": "npx webpack --mode production --progress=profile",
     "lint": "eslint ."
   },
