@@ -18,11 +18,12 @@ const Login = class {
 
       const dataForm = JSON.parse(JSON.stringify(Object.fromEntries(new FormData(formEl))));
 
-      axios.get(`http://127.0.0.1:3000/login?login=${dataForm.name}&password=${dataForm.password}`)
-        .then((response) => {
-          const { token } = response.data;
-          localStorage.setItem('token', token);
+      console.log('Form data:', dataForm.name, dataForm.password);
 
+      axios.post('http://127.0.0.1:3000/login', { login: dataForm.name, password: dataForm.password }, { withCredentials: true })
+        .then((response) => {
+          console.log(response);
+          // Token is set in cookie by server
           window.location.href = '/admin';
         }).catch(() => {
           console.log('badddd');

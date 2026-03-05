@@ -1,6 +1,7 @@
 import Header from '../components/header-admin';
 
 const axios = require('axios').default;
+const DOMPurify = require('dompurify');
 
 const Admin = class {
   constructor(body) {
@@ -8,11 +9,7 @@ const Admin = class {
   }
 
   run() {
-    axios.get('http://127.0.0.1:3000/contacts', {
-      headers: {
-        authorization: localStorage.getItem('token')
-      }
-    }).then((response) => {
+    axios.get('http://127.0.0.1:3000/contacts', { withCredentials: true }).then((response) => {
       this.dataMessages = response.data;
       this.body.innerHTML = this.render();
 
@@ -48,7 +45,7 @@ const Admin = class {
       <td>${dateCreateAt.getDay()}/${dateCreateAt.getMonth()}/${dateCreateAt.getFullYear()}</td>
       <td>${firstName} ${lastName}</td>
       <td>${dateArrivedAt.getDay()}/${dateArrivedAt.getMonth()}/${dateArrivedAt.getFullYear()} -> ${dateDepartureAt.getDay()}/${dateDepartureAt.getMonth()}/${dateDepartureAt.getFullYear()}</td>
-      <td>${message}</td>
+      <td>${DOMPurify.sanitize(message)}</td>
       <td><button class="btn btn-primary" data-id="${id}">delete</button></td>
     </tr>
     `;
@@ -74,13 +71,13 @@ const Admin = class {
   }
 
   onClickDelete(id) {
-    axios.delete(`http://127.0.0.1:3000/contact/${id}`).then(() => {
+    axios.delete(`http://127.0.0.1:3000/contact/${id}`, { withCredentials: true }).then(() => {
       window.location = '/admin';
     });
   }
 
   onClickDdisconnected() {
-    localStorage.removeItem('token');
+    // Clear cookie by calling logout or just redirect
     window.location.href = '/login';
   }
 

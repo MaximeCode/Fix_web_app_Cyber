@@ -12,13 +12,7 @@ const Route = class {
 
   routing() {
     if (window.location.pathname === this.route && !this.priv) {
-      const token = localStorage.getItem('token');
-
-      axios.get('http://127.0.0.1:3000/auth', {
-        headers: {
-          authorization: token
-        }
-      })
+      axios.get('http://127.0.0.1:3000/auth', { withCredentials: true })
         .then(() => {
           const page = new this.Page(this.body);
           page.run();

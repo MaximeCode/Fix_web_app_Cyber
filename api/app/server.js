@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 const cors = require("cors");
+const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
+const rateLimit = require("express-rate-limit");
 
 // Core
 const config = require("./config.js");
@@ -62,8 +65,15 @@ module.exports = class Server {
    * Middleware
    */
   middleware() {
+    this.app.use(helmet());
+    this.app.use(cors({ origin: 'http://127.0.0.1:9090', credentials: true }));
+    this.app.use(cookieParser());
+    const limiter = rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100 // limit each IP to 100 requests per windowMs
+    });
+    this.app.use(limiter);
     this.app.use(compression());
-    this.app.use(cors());
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
   }
@@ -72,9 +82,9 @@ module.exports = class Server {
    * Routes
    */
   routes() {
-    new routes.Login(this.app, this.connect);
-    new routes.Contact(this.app, this.connect);
-    new routes.Feedback(this.app, this.connect);
+    new routes.Login(this.app, this.connect, this.config);
+    new routes.Contact(this.app, this.connect, this.config);
+    new routes.Feedback(this.app, this.connect, this.config);
 
     // If route not exist
     this.app.use((req, res) => {
