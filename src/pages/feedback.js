@@ -169,7 +169,7 @@ const FeedBack = class {
     formEl.addEventListener('submit', () => {
       const dataForm = new FormData(formEl);
 
-      axios.post('http://127.0.0.1:3000/feedback', JSON.parse(JSON.stringify(Object.fromEntries(dataForm))));
+      axios.post('http://127.0.0.1:3000/feedback', JSON.parse(JSON.stringify(Object.fromEntries(dataForm))), { withCredentials: true });
     });
   }
 

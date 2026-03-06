@@ -56,7 +56,7 @@ const Feedback = class Feedback {
  * Middleware
  */
   all() {
-    this.app.get('/feedback/', authMiddleware(this.config), (req, res) => {
+    this.app.get('/feedback/', (req, res) => {
       try {
         this.FeedbackModel.find().sort({ createdAt: -1 }).then((feedback) => {
           res.status(200).json(feedback || {})

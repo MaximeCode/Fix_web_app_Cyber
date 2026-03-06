@@ -1,9 +1,11 @@
 const Contact = require('./contact.js')
 const Feedback = require('./feedback.js')
 const Login = require('./login.js')
+const Logout = require('./logout.js')
 
 module.exports = {
   Contact,
   Feedback,
-  Login
+  Login,
+  Logout
 }

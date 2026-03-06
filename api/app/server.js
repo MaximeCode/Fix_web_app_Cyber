@@ -85,6 +85,7 @@ module.exports = class Server {
     new routes.Login(this.app, this.connect, this.config);
     new routes.Contact(this.app, this.connect, this.config);
     new routes.Feedback(this.app, this.connect, this.config);
+    new routes.Logout(this.app, this.connect, this.config);
 
     // If route not exist
     this.app.use((req, res) => {

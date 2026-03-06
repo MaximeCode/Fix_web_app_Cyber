@@ -77,8 +77,13 @@ const Admin = class {
   }
 
   onClickDdisconnected() {
-    // Clear cookie by calling logout or just redirect
-    window.location.href = '/login';
+    // Clear cookie
+    axios.post('http://127.0.0.1:3000/logout', {}, { withCredentials: true }).then(() => {
+      window.location.href = '/login';
+      console.log('Logout successful');
+    }).catch(() => {
+      console.log('Error during logout');
+    });
   }
 
   render() {
