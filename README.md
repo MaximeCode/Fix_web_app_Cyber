@@ -72,4 +72,4 @@ Cette application a été sécurisée grâce aux modifications suivantes mises e
 - Mise à jour de tous les contrôleurs pour accepter le paramètre de configuration.
 - Vérification que tous les formulaires utilisent la méthode POST.
 
-Ces modifications corrigent des vulnérabilités critiques, notamment les mots de passe en texte clair, l'absence d'authentification, les risques XSS et CSRF, ainsi que les problèmes de validation des entrées. L'application respecte désormais les meilleures pratiques en matière de sécurité pour une application web prête à être mise en production.
+Ces modifications corrigent des vulnérabilités critiques, notamment les mots de passe en texte clair, l'absence d'authentification, les risques XSS et CSRF, ainsi que les problèmes de validation des entrées. L'application respecte désormais les meilleures pratiques en matière de sécurité pour une application web.
